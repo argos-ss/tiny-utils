@@ -1,35 +1,42 @@
-/** Date formatting, parsing, and diff utilities. */
+/**
+ * @file Date utilities — pure functions with no temporal side effects.
+ */
 
-export function formatDate(date: Date, format: string = 'YYYY-MM-DD'): string {
-  const map: Record<string, string> = {
-    'YYYY': String(date.getFullYear()),
-    'MM': String(date.getMonth() + 1).padStart(2, '0'),
-    'DD': String(date.getDate()).padStart(2, '0'),
-    'HH': String(date.getHours()).padStart(2, '0'),
-    'mm': String(date.getMinutes()).padStart(2, '0'),
-    'ss': String(date.getSeconds()).padStart(2, '0'),
+export function formatDate(date: Date, template = "YYYY-MM-DD"): string {
+  const tokens: Record<string, string> = {
+    YYYY: date.getFullYear().toString(),
+    MM: (date.getMonth() + 1).toString().padStart(2, "0"),
+    DD: date.getDate().toString().padStart(2, "0"),
+    HH: date.getHours().toString().padStart(2, "0"),
+    mm: date.getMinutes().toString().padStart(2, "0"),
+    ss: date.getSeconds().toString().padStart(2, "0"),
   };
-  return format.replace(/YYYY|MM|DD|HH|mm|ss/g, (k) => map[k]);
+  return template.replace(/YYYY|MM|DD|HH|mm|ss/g, (k) => tokens[k]);
 }
 
 export function daysBetween(a: Date, b: Date): number {
   const ms = Math.abs(a.getTime() - b.getTime());
-  return Math.floor(ms / (1000 * 60 * 60 * 24));
+  return Math.floor(ms / 86_400_000);
 }
 
-export function isWeekend(date: Date = new Date()): boolean {
+export function addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+export function isWeekend(date = new Date()): boolean {
   const day = date.getDay();
   return day === 0 || day === 6;
 }
 
-export function relativeTime(date: Date): string {
-  const diff = Date.now() - date.getTime();
-  const seconds = Math.floor(diff / 1000);
-  if (seconds < 60) return 'just now';
+/** Human‑readable elapsed time (e.g. "3h ago"). */
+export function relativeTime(date: Date, now = Date.now()): string {
+  const seconds = Math.floor((now - date.getTime()) / 1000);
+  if (seconds < 60) return "just now";
   const minutes = Math.floor(seconds / 60);
   if (minutes < 60) return `${minutes}m ago`;
   const hours = Math.floor(minutes / 60);
   if (hours < 24) return `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  return `${days}d ago`;
+  return `${Math.floor(hours / 24)}d ago`;
 }

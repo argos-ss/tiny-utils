@@ -1,0 +1,22 @@
+#
+# .gitignore for tiny-utils
+#
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Rust
+rust/target/
+
+# Go
+go/vendor/
+
+# Node / JS
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db

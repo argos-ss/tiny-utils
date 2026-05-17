@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
-# ANSI color helpers for terminal output.
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color
+#
+# ANSI terminal helpers — every function writes to stdout.
+# Source this file  (`. ./colors.sh`)  then call the helpers.
+#
 
-info()    { printf "${BLUE}[INFO]${NC} %s\n" "$*"; }
-success() { printf "${GREEN}[OK]${NC} %s\n" "$*"; }
-warn()    { printf "${YELLOW}[WARN]${NC} %s\n" "$*"; }
-error()   { printf "${RED}[ERR]${NC} %s\n" "$*"; }
+reset='\033[0m'
+
+info()    { printf '\033[0;34m[INFO]%s %s\n' "$reset" "$*"; }
+success() { printf '\033[0;32m[ OK ]%s %s\n' "$reset" "$*"; }
+warn()    { printf '\033[1;33m[WARN]%s %s\n' "$reset" "$*"; }
+error()   { printf '\033[0;31m[ERR]%s %s\n' "$reset" "$*" >&2; }
+header()  { printf '\033[1;36m=== %s ===%s\n' "$*" "$reset"; }

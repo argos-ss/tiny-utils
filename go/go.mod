@@ -1,3 +1,3 @@
 module github.com/argos-ss/tiny-utils/go
 
-go 1.22
+go 1.24

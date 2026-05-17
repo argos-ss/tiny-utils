@@ -1,3 +1,4 @@
+// Package strutil provides string transformation primitives.
 package strutil
 
 import (
@@ -5,27 +6,42 @@ import (
 	"strings"
 )
 
-var nonWord = regexp.MustCompile(`[^\w\s-]`)
-var spaces = regexp.MustCompile(`[-\s]+`)
+var (
+	reNonWord = regexp.MustCompile(`[^\w\s-]`)
+	reSpaces  = regexp.MustCompile(`[-\s]+`)
+)
 
+// Slugify converts text to a lowercase, hyphen-separated slug.
 func Slugify(text string) string {
-	text = strings.ToLower(strings.TrimSpace(text))
-	text = nonWord.ReplaceAllString(text, "")
-	text = spaces.ReplaceAllString(text, "-")
-	return strings.Trim(text, "-")
+	s := strings.ToLower(strings.TrimSpace(text))
+	s = reNonWord.ReplaceAllString(s, "")
+	s = reSpaces.ReplaceAllString(s, "-")
+	return strings.Trim(s, "-")
 }
 
-func Truncate(text string, maxLen int, suffix ...string) string {
-	s := "..."
-	if len(suffix) > 0 {
-		s = suffix[0]
+// Truncate shortens text at a word boundary.
+func Truncate(text string, maxLen int, opts ...string) string {
+	suffix := "..."
+	if len(opts) > 0 {
+		suffix = opts[0]
 	}
+
 	if len(text) <= maxLen {
 		return text
 	}
+
 	trunc := text[:maxLen]
 	if last := strings.LastIndex(trunc, " "); last > 0 {
 		trunc = trunc[:last]
 	}
-	return trunc + s
+	return trunc + suffix
+}
+
+// ReverseWords reverses the word order of a string.
+func ReverseWords(text string) string {
+	parts := strings.Fields(text)
+	for i, j := 0, len(parts)-1; i < j; i, j = i+1, j-1 {
+		parts[i], parts[j] = parts[j], parts[i]
+	}
+	return strings.Join(parts, " ")
 }

@@ -1,26 +1,48 @@
 /**
- * String utilities for everyday use.
+ * @file String utilities — every function is a pure expression.
+ * @module str-utils
  */
 
-export function slugify(text) {
-  return text
+/** Regex cache for slugify. */
+const WORD_CLEAN = /[^\w\s-]/g;
+
+/** @param {string} text */
+export const slugify = (text) =>
+  text
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[-\s]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
+    .replace(WORD_CLEAN, "")
+    .replace(/[-\s]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
-export function truncate(text, maxLen = 80, suffix = '...') {
+/**
+ * Truncate at word boundary.
+ *
+ * @param {string}  text
+ * @param {number}  [maxLen=80]
+ * @param {string}  [suffix='...']
+ * @returns {string}
+ */
+export const truncate = (text, maxLen = 80, suffix = "...") => {
   if (text.length <= maxLen) return text;
-  const truncated = text.slice(0, maxLen);
-  const lastSpace = truncated.lastIndexOf(' ');
-  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + suffix;
-}
+  const partial = text.slice(0, maxLen);
+  const last = partial.lastIndexOf(" ");
+  return (last > 0 ? partial.slice(0, last) : partial) + suffix;
+};
 
-export function camelToSnake(name) {
-  return name
-    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1_$2')
-    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
-    .toLowerCase();
-}
+/**
+ * Reverse the order of words.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+export const reverseWords = (text) => text.split(/\s+/).reverse().join(" ");
+
+/**
+ * Escape special regex characters in a string.
+ *
+ * @param {string} text
+ * @returns {string} Regex‑safe literal.
+ */
+export const escapeRegex = (text) =>
+  text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
