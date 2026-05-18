@@ -13,3 +13,4 @@ inline fun <T, K> Iterable<T>.groupByNonNull(keySelector: (T) -> K): Map<K, List
     for (element in this) map.getOrPut(keySelector(element)) { mutableListOf() }.add(element)
     return map
 }
+fun <T> List<T>.randomSample(count: Int): List<T> = shuffled().take(count)
