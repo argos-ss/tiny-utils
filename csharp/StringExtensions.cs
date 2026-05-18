@@ -19,4 +19,6 @@ public static class StringExtensions {
         var lastSpace = truncated.LastIndexOf(' ');
         return (lastSpace > 0 ? truncated[..lastSpace] : truncated) + suffix;
     }
+    public static string Reverse(string text) => new string(text.Reverse().ToArray());
 }
+public static string ReverseExt(this string text) => new string(text.Reverse().ToArray());
