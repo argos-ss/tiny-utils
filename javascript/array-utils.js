@@ -67,3 +67,7 @@ export const dedupe = (arr, keyFn = (x) => x) => {
     return true;
   });
 };
+export const zip = (...arrays) => {
+  const min = Math.min(...arrays.map(a => a.length));
+  return Array.from({ length: min }, (_, i) => arrays.map(a => a[i]));
+};
