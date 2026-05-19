@@ -18,3 +18,7 @@ function str.truncate(text, max_len, suffix)
 end
 
 return str
+function str.is_palindrome(text)
+  local cleaned = text:lower():gsub("[^%w]", "")
+  return cleaned == cleaned:reverse()
+end
