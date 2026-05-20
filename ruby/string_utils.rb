@@ -20,3 +20,7 @@ module StringUtils
     end
   end
 end
+  def palindrome?(text)
+    cleaned = text.downcase.gsub(/[^a-z0-9]/, "")
+    cleaned == cleaned.reverse
+  end
