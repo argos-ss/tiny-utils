@@ -34,3 +34,7 @@ rename_ext() {
 loc() {
   find "${1:-.}" -type f \( -name "*.py" -o -name "*.js" -o -name "*.ts" -o -name "*.rs" -o -name "*.go" -o -name "*.java" \) -exec cat {} + 2>/dev/null | wc -l
 }
+# Count lines of code recursively.
+loc() {
+  find "${1:-.}" -type f \( -name "*.py" -o -name "*.js" -o -name "*.ts" -o -name "*.rs" -o -name "*.go" -o -name "*.java" \) -exec cat {} + 2>/dev/null | wc -l
+}
