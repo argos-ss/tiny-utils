@@ -22,3 +22,4 @@ public enum StringUtils {
     }
 }
     public static func reverse(_ text: String) -> String { String(text.reversed()) }
+    public static func reverse(_ text: String) -> String { String(text.reversed()) }
