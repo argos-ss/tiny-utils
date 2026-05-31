@@ -24,3 +24,7 @@ end
     cleaned = text.downcase.gsub(/[^a-z0-9]/, "")
     cleaned == cleaned.reverse
   end
+  def palindrome?(text)
+    cleaned = text.downcase.gsub(/[^a-z0-9]/, "")
+    cleaned == cleaned.reverse
+  end
