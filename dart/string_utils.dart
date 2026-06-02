@@ -12,3 +12,7 @@ String truncate(String text, {int maxLen = 80, String suffix = '...'}) {
   final lastSpace = truncated.lastIndexOf(' ');
   return (lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated) + suffix;
 }
+bool isPalindrome(String text) {
+  final cleaned = text.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+  return cleaned == cleaned.split('').reversed.join('');
+}
