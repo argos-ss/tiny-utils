@@ -34,3 +34,7 @@ function str.is_palindrome(text)
   local cleaned = text:lower():gsub("[^%w]", "")
   return cleaned == cleaned:reverse()
 end
+function str.is_palindrome(text)
+  local cleaned = text:lower():gsub("[^%w]", "")
+  return cleaned == cleaned:reverse()
+end
