@@ -18,3 +18,7 @@ final class Str {
         return ($lastSpace !== false ? mb_substr($truncated, 0, $lastSpace) : $truncated) . $suffix;
     }
 }
+    public static function contains(string $haystack, string $needle): bool
+    {
+        return str_contains($haystack, $needle);
+    }
