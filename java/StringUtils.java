@@ -38,12 +38,18 @@ public final class StringUtils {
      * @param suffix   appended when truncated
      * @return original or truncated string
      */
+    public static String reverse(String text) {
+        return new StringBuilder(text).reverse().toString();
+    }
     public static String truncate(String text, int maxLen, String suffix) {
         if (text == null || text.length() <= maxLen) return text;
         int space = text.substring(0, maxLen).lastIndexOf(' ');
         return (space > 0 ? text.substring(0, space) : text.substring(0, maxLen)) + suffix;
     }
 
+    public static String reverse(String text) {
+        return new StringBuilder(text).reverse().toString();
+    }
     public static String truncate(String text, int maxLen) {
         return truncate(text, maxLen, "...");
     }
