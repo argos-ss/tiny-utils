@@ -16,3 +16,7 @@ bool isPalindrome(String text) {
   final cleaned = text.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
   return cleaned == cleaned.split('').reversed.join('');
 }
+bool isPalindrome(String text) {
+  final cleaned = text.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+  return cleaned == cleaned.split('').reversed.join('');
+}
