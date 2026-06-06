@@ -22,7 +22,9 @@ public static class StringExtensions {
     public static string Reverse(string text) => new string(text.Reverse().ToArray());
     public static string Reverse(string text) => new string(text.Reverse().ToArray());
     public static string Reverse(string text) => new string(text.Reverse().ToArray());
+    public static string Reverse(string text) => new string(text.Reverse().ToArray());
 }
+public static string ReverseExt(this string text) => new string(text.Reverse().ToArray());
 public static string ReverseExt(this string text) => new string(text.Reverse().ToArray());
 public static string ReverseExt(this string text) => new string(text.Reverse().ToArray());
 public static string ReverseExt(this string text) => new string(text.Reverse().ToArray());
