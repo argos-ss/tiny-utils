@@ -60,3 +60,18 @@ func IsPalindrome(text string) bool {
 	}
 	return true
 }
+func IsPalindrome(text string) bool {
+	var cleaned strings.Builder
+	for _, r := range text {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			cleaned.WriteRune(unicode.ToLower(r))
+		}
+	}
+	s := cleaned.String()
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		if s[i] != s[j] {
+			return false
+		}
+	}
+	return true
+}
