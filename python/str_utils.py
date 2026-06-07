@@ -94,15 +94,3 @@ def to_pascal(text: str) -> str:
         PascalCase output (e.g. "hello-world" → "HelloWorld").
     """
     return "".join(word.capitalize() for word in re.split(r"[-_]", text))
-def is_palindrome(text: str) -> bool:
-    """Check if text reads the same forward and backward (ignoring case and non-alphanumeric)."""
-    cleaned = re.sub(r'[^a-zA-Z0-9]', '', text).lower()
-    return cleaned == cleaned[::-1]
-def is_palindrome(text: str) -> bool:
-    """Check if text reads the same forward and backward (ignoring case and non-alphanumeric)."""
-    cleaned = re.sub(r'[^a-zA-Z0-9]', '', text).lower()
-    return cleaned == cleaned[::-1]
-def is_palindrome(text: str) -> bool:
-    """Check if text reads the same forward and backward (ignoring case and non-alphanumeric)."""
-    cleaned = re.sub(r'[^a-zA-Z0-9]', '', text).lower()
-    return cleaned == cleaned[::-1]
