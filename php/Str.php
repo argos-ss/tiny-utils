@@ -34,3 +34,7 @@ final class Str {
     {
         return str_contains($haystack, $needle);
     }
+    public static function contains(string $haystack, string $needle): bool
+    {
+        return str_contains($haystack, $needle);
+    }
